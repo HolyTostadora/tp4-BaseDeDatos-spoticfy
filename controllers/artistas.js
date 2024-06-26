@@ -31,6 +31,10 @@ const getArtista = async (req, res) => {
             "nombre": "Nombre del artista"
         }
     */
+
+    const id = req.params.id;
+    const [rows, fields] = await conn.query('SELECT id,nombre from artistas WHERE id = ?',[id]);
+    res.json(rows[0]);
 };
 
 const createArtista = async (req, res) => {
