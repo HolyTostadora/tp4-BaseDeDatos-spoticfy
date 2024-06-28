@@ -111,6 +111,10 @@ const deleteCancion = async (req, res) => {
 const reproducirCancion = async (req, res) => {
     // Completar con la consulta que aumenta las reproducciones de una canción
     // En este caso es una consulta PUT, pero no recibe ningún parámetro en el body, solo en los params
+    const id = req.params.id;  
+    const [rows, fields] = await conn.query(`UPDATE canciones SET reproducciones = reproducciones + 1
+    WHERE id = ?`,[id]);
+    res.send(`Se actualizó correctamente`);
 };
 
 const canciones = {

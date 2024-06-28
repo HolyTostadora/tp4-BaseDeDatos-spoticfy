@@ -92,6 +92,15 @@ const getCancionesByAlbum = async (req, res) => {
     // Completar con la consulta que devuelve las canciones de un album
     // Recordar que los parámetros de una consulta GET se encuentran en req.params
     // Deberían devolver los datos de la misma forma que getCanciones
+
+    const id = req.params.id;
+    const [rows, fields] = await conn.query(`
+    SELECT CAN.id, CAN.nombre, AR.id AS nombre_artista, AL.id AS nombre_album, CAN.duracion, CAN.reproducciones  
+    from canciones CAN
+    JOIN albumes AL on CAN.album = AL.id
+    JOIN artistas AR on AL.artista = AR.id
+    WHERE AL.id = ?`,[id]);
+    res.json(rows);
 };
 
 const albumes = {
