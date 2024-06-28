@@ -75,7 +75,7 @@ Content-Type: application/json
 
 {
   "nombre": "Cancion 3",
-  "album": 2,
+  "album": 1,
   "duracion": 260
 }
 
@@ -100,7 +100,7 @@ PUT http://localhost:3000/canciones/1/reproducir HTTP/1.1
 
 ### Obtener canciones de un album
 
-GET http://localhost:3000/albumes/3/canciones HTTP/1.1
+GET http://localhost:3000/albumes/1/canciones HTTP/1.1
 
 ### Obtener canciones de un artista
 
@@ -108,4 +108,4 @@ GET http://localhost:3000/artistas/1/canciones HTTP/1.1
 
 ### Obtener albumes de un artista
 
-GET http://localhost:3000/artistas/1/albumes HTTP/1.1
+GET http://localhost:3000/artistas/3/albumes HTTP/1.1

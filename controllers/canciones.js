@@ -9,16 +9,16 @@ const getCanciones = async (_, res) => {
             {
                 "id": "Id de la canción",
                 "nombre": "Nombre de la canción",
-                "nombre_artista": "Id del artista",
-                "nombre_album": "Id del album",
+                "nombre_artista": "Nombre del artista",
+                "nombre_album": "Nombre del album",
                 "duracion": "Duración de la canción",
                 "reproducciones": "Reproducciones de la canción"
             },
             {
                 "id": "Id de la canción",
                 "nombre": "Nombre de la canción",
-                "nombre_artista": "Id del artista",
-                "nombre_album": "Id del album",
+                "nombre_artista": "Nombre del artista",
+                "nombre_album": "Nombre del album",
                 "duracion": "Duración de la canción",
                 "reproducciones": "Reproducciones de la canción"
             },
@@ -27,7 +27,7 @@ const getCanciones = async (_, res) => {
     */
 
     const [rows, fields] = await conn.query(`
-    SELECT CAN.id, CAN.nombre, AR.id AS nombre_artista, AL.id AS nombre_album, CAN.duracion, CAN.reproducciones  
+    SELECT CAN.id, CAN.nombre, AR.nombre AS nombre_artista, AL.nombre AS nombre_album, CAN.duracion, CAN.reproducciones  
     from canciones CAN
     JOIN albumes AL on CAN.album = AL.id
     JOIN artistas AR on AL.artista = AR.id`);
@@ -51,7 +51,7 @@ const getCancion = async (req, res) => {
 
     const id = req.params.id;
     const [rows, fields] = await conn.query(`
-    SELECT CAN.id, CAN.nombre, AR.id AS nombre_artista, AL.id AS nombre_album, CAN.duracion, CAN.reproducciones  
+    SELECT CAN.id, CAN.nombre, AR.nombre AS nombre_artista, AL.nombre AS nombre_album, CAN.duracion, CAN.reproducciones  
     from canciones CAN
     JOIN albumes AL on CAN.album = AL.id
     JOIN artistas AR on AL.artista = AR.id
