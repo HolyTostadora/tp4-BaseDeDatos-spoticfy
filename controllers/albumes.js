@@ -71,6 +71,12 @@ const updateAlbum = async (req, res) => {
             "artista": "Id del artista"
         }
     */
+    const id = req.params.id;
+    const nombre = req.body.nombre;
+    const artista = req.body.artista;
+    const [rows, fields] = await conn.query(`UPDATE albumes SET nombre = ?, artista =?
+    WHERE id = ?`,[nombre,artista,id]);
+    res.send(`Se actualizó correctamente`);
 
 };
 
