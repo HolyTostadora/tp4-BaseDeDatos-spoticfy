@@ -83,6 +83,9 @@ const updateAlbum = async (req, res) => {
 const deleteAlbum = async (req, res) => {
     // Completar con la consulta que elimina un album
     // Recordar que los parámetros de una consulta DELETE se encuentran en req.params
+    const id = req.params.id;
+    const [rows, fields] = await conn.query(`DELETE FROM albumes WHERE id = ?`,[id]);
+    res.send(`Se eliminó correctamente`);
 };
 
 const getCancionesByAlbum = async (req, res) => {
