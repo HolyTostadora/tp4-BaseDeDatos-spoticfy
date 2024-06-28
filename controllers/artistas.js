@@ -69,6 +69,9 @@ const updateArtista = async (req, res) => {
 const deleteArtista = async (req, res) => {
     // Completar con la consulta que elimina un artista
     // Recordar que los parámetros de una consulta DELETE se encuentran en req.params
+    const id = req.params.id;
+    const [rows, fields] = await conn.query(`DELETE FROM artistas WHERE id = ?`,[id]);
+    res.send(`Se eliminó correctamente`);
 };
 
 const getAlbumesByArtista = async (req, res) => {

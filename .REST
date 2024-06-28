@@ -26,7 +26,7 @@ Content-Type: application/json
 
 ### Eliminar un artista
 
-DELETE http://localhost:3000/artistas/2 HTTP/1.1
+DELETE http://localhost:3000/artistas/8 HTTP/1.1
 
 ### Obtener albumes
 
