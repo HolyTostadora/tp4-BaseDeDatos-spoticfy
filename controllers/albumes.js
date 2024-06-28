@@ -19,6 +19,11 @@ const getAlbumes = async (_, res) => {
             ...
         ]
     */
+
+    const [rows, fields] = await conn.query(`
+    SELECT AL.id,AL.nombre,AR.nombre AS nombre_artista from albumes AL
+    JOIN artistas AR on AR.id=AL.artista`);
+    res.json(rows);
 };
 
 const getAlbum = async (req, res) => {
