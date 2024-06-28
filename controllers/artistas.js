@@ -46,6 +46,9 @@ const createArtista = async (req, res) => {
             "nombre": "Nombre del artista",
         }
     */
+    const nombre = req.body.nombre;
+    const [rows, fields] = await conn.query('INSERT INTO artistas (nombre) VALUES (?)',[nombre]);
+    res.send(`Se agregó a ${nombre} correctamente`);
 };
 
 const updateArtista = async (req, res) => {

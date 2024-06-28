@@ -25,6 +25,7 @@ app.get("/", (_, res) => {
 
 app.get("/artistas", artistas.getArtistas);
 app.get("/artistas/:id", artistas.getArtista);
+app.post("/artistas",artistas.createArtista)
 
 // Albumes
 // Completar con las rutas de albumes
