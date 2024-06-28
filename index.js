@@ -30,6 +30,8 @@ app.put("/artistas/:id",artistas.updateArtista);
 app.delete("/artistas/:id",artistas.deleteArtista);
 
 app.get("/albumes",albumes.getAlbumes)
+app.get("/albumes/:id",albumes.getAlbum)
+
 
 // Albumes
 // Completar con las rutas de albumes

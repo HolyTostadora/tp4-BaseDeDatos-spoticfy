@@ -37,6 +37,12 @@ const getAlbum = async (req, res) => {
             "nombre_artista": "Nombre del artista"
         }
     */
+    const id = req.params.id;
+    const [rows, fields] = await conn.query(`
+    SELECT AL.id,AL.nombre,AR.nombre AS nombre_artista from albumes AL
+    JOIN artistas AR on AR.id=AL.artista
+    WHERE AL.id= ?`,[id]);
+    res.json(rows[0]);
 };
 
 const createAlbum = async (req, res) => {
