@@ -58,7 +58,7 @@ const createAlbum = async (req, res) => {
     const nombre = req.body.nombre;
     const artista = req.body.artista;
     const [rows, fields] = await conn.query('INSERT INTO albumes (nombre,artista) VALUES (?,?)',[nombre,artista]);
-    res.send(`Se agregó a ${nombre} correctamente`);
+    res.send(`Se agregó ${nombre} correctamente`);
 };
 
 const updateAlbum = async (req, res) => {

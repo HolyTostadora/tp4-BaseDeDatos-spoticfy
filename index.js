@@ -35,6 +35,12 @@ app.post(`/albumes`,albumes.createAlbum);
 app.put("/albumes/:id",albumes.updateAlbum);
 app.delete("/albumes/:id",albumes.deleteAlbum);
 
+app.get("/canciones",canciones.getCanciones);
+app.get("/canciones/:id",canciones.getCancion);
+app.post("/canciones",canciones.createCancion);
+app.put("/canciones/:id",canciones.updateCancion);
+app.delete("/canciones/:id",canciones.deleteCancion);
+
 // Albumes
 // Completar con las rutas de albumes
 // Para acceder a cada funcion de albumes, se debe hacer de la siguiente forma:

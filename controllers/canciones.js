@@ -25,6 +25,13 @@ const getCanciones = async (_, res) => {
             ...
         ]
     */
+
+    const [rows, fields] = await conn.query(`
+    SELECT CAN.id, CAN.nombre, AR.id AS nombre_artista, AL.id AS nombre_album, CAN.duracion, CAN.reproducciones  
+    from canciones CAN
+    JOIN albumes AL on CAN.album = AL.id
+    JOIN artistas AR on AL.artista = AR.id`);
+    res.json(rows);
 };
 
 const getCancion = async (req, res) => {
@@ -41,6 +48,16 @@ const getCancion = async (req, res) => {
             "reproducciones": "Reproducciones de la canción"
         }
     */
+
+    const id = req.params.id;
+    const [rows, fields] = await conn.query(`
+    SELECT CAN.id, CAN.nombre, AR.id AS nombre_artista, AL.id AS nombre_album, CAN.duracion, CAN.reproducciones  
+    from canciones CAN
+    JOIN albumes AL on CAN.album = AL.id
+    JOIN artistas AR on AL.artista = AR.id
+    WHERE CAN.id = ?`,[id]);
+    res.json(rows[0]);
+   
 };
 
 const createCancion = async (req, res) => {
@@ -55,6 +72,11 @@ const createCancion = async (req, res) => {
         }
     */
     // (Reproducciones se inicializa en 0)
+    const nombre = req.body.nombre;
+    const album = req.body.album;
+    const duracion = req.body.duracion;
+    const [rows, fields] = await conn.query('INSERT INTO canciones (nombre,album,duracion) VALUES (?,?,?)',[nombre,album,duracion]);
+    res.send(`Se agregó ${nombre} correctamente`);
 };
 
 const updateCancion = async (req, res) => {
@@ -69,11 +91,21 @@ const updateCancion = async (req, res) => {
         }
     */
     // (Reproducciones no se puede modificar con esta consulta)
+    const id = req.params.id;
+    const nombre = req.body.nombre;
+    const album = req.body.album;
+    const duracion = req.body.duracion;    
+    const [rows, fields] = await conn.query(`UPDATE canciones SET nombre = ?, album =?, duracion = ?
+    WHERE id = ?`,[nombre,album,duracion,id]);
+    res.send(`Se actualizó correctamente`);
 };
 
 const deleteCancion = async (req, res) => {
     // Completar con la consulta que elimina una canción
     // Recordar que los parámetros de una consulta DELETE se encuentran en req.params
+    const id = req.params.id;
+    const [rows, fields] = await conn.query(`DELETE FROM canciones WHERE id = ?`,[id]);
+    res.send(`Se eliminó correctamente`);
 };
 
 const reproducirCancion = async (req, res) => {
